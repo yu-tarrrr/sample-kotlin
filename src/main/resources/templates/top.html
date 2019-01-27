@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>LGTM.in</title>
+    <link rel="stylesheet" media="all" th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" media="all" th:href="@{/webjars/bootstrap/4.1.3/css/bootstrap.min.css}"/>
+    <script type="text/javascript" th:src="@{js/copyToClipboard.js}"></script>
+    <script type="text/javascript" th:src="@{js/deleteImage.js}"></script>
+</head>
+<body>
+<div class="h1">
+    <div class="text-left" style="margin-left: 80px">
+        <a href="/">
+            <span style="color: black" class="text-decoration:none">LGTM.in</span>
+        </a>
+    </div>
+
+</div>
+<div class="h3">
+    <div class="text-right" style="margin-right:80px">
+        <a href="/register">
+            <button class="btn btn-outline-secondary">upload</button>
+        </a>
+    </div>
+</div>
+<br/>
+<div style="margin-left: 60px;margin-right:60px">
+    <div class="text-center">
+        <div style="float: left; margin: 5px" th:each="image, index:${imageResources}">
+
+            <p><img th:src="${image.imageUrl}" style="object-fit:contain; height:200px; width:200px;background-color:#F5F5F5"></p>
+            <!--TODO:<span th:if="${image.isNew}">-->
+                <!--<img th:src="@{img/new.png}" style="width:30px; height:30px">-->
+            <!--</span>-->
+            <input class="copyTarget" type="hidden" th:value="${image.getImageLgtmUrl()}" />
+            <button class="btn btn-outline-secondary" th:data-index="${index.index}" onclick="copyToClipboard(event)">コピー</button>
+            <a th:href="@{/delete(q=${image.getImageUrl()})}">
+            <button class="btn btn-outline-secondary" onclick="return deleteImage();">削除</button></a>
+        </div>
+    </div>
+</div>
+<br/>
+</div>
+</body>
+</html>

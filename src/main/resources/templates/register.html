@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>Upload️</title>
+    <link rel="stylesheet" media="all" th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" media="all" th:href="@{/webjars/bootstrap/4.1.3/css/bootstrap.min.css}"/>
+</head>
+<body style="background: white">
+<div style="margin-left: 80px">
+    <div class="h1">
+        <div class="text-left">
+            <a href="/">
+                <span style="color: black" class="text-decoration:none">Upload️</span>
+            </a></div>
+    </div>
+    <div>
+        <div class="text-left">
+            <form role="form" action="/register" th:action="@{/register}" th:object="${registerForm}" method="post" autocomplete="off">
+                <div>Image Url</div>
+                <input type="text" id="inputPng" style="width:50%;" placeholder="https://mym.corp.yahoo.co.jp/paster/abcdefghijk123.png" th:field="*{imagePng}"/>
+                <br/>
+                <br/>
+                <button class="btn btn-outline-secondary" name="register" type="submit">submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -11,6 +11,11 @@ class LgtmRepositoryAccessor(private val lgtmRepository: LgtmRepository ) {
     fun getImages() :List<LgtmEntity>{ return lgtmRepository.findAll()}
 
     /**
+     * 登録用のメソッド
+     */
+    fun postImage(lgtmEntity: LgtmEntity) { lgtmRepository.save(lgtmEntity)}
+
+    /**
      * 削除用のメソッド
      */
     fun deleteImage(lgtmEntity: LgtmEntity) { lgtmRepository.delete(lgtmEntity) }

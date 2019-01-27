@@ -4,22 +4,22 @@ import com.example.sample_kotlin.controller.resources.LgtmEntity
 import com.example.sample_kotlin.controller.resources.LgtmTopResponse
 import com.example.sample_kotlin.infrastructure.LgtmRepository
 import com.example.sample_kotlin.service.LgtmRepositoryAccessor
+import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
-import org.springframework.web.bind.annotation.RestController
 import java.util.*
 
-@RestController
-@RequestMapping
-class LgtmController(private val lgtmRepository: LgtmRepository) {
+@Controller
+@RequestMapping("/")
+class LgtmTopController(private val lgtmRepository: LgtmRepository) {
 
     /**
      * 取得用メソッド
      */
-    @GetMapping("/name")
-    fun geLgtmImages() : MutableList<LgtmTopResponse> {
+    @GetMapping
+    fun getLgtmImages(model: Model) : String {
         // 現在時刻の取得をしておく
         val now = Calendar.getInstance()
         now.add(Calendar.DAY_OF_MONTH, -7)
@@ -48,15 +48,16 @@ class LgtmController(private val lgtmRepository: LgtmRepository) {
         topResponseList.shuffle()
         topResponseList.addAll(nonNewList.shuffled())
 
-        // レスポンスを返却する
-        return topResponseList
+        model.addAttribute("imageResources", topResponseList)
+
+        return "top"
     }
 
     /**
      * 削除用メソッド
      */
     @GetMapping("/delete")
-    fun deleteLgtmImage(model : Model, @RequestParam(name = "q") deleteImageUrl : String) {
+    fun deleteLgtmImage(model : Model, @RequestParam(name = "q") deleteImageUrl : String) : String{
         // 受け取ったUrlをEntityに詰める
         var lgtmEntity = LgtmEntity()
         lgtmEntity.apply { imageUrl = deleteImageUrl }
@@ -65,7 +66,8 @@ class LgtmController(private val lgtmRepository: LgtmRepository) {
         try {
             LgtmRepositoryAccessor(lgtmRepository).deleteImage(lgtmEntity)
         } catch (ex : Exception) {
-            print(ex.cause)
+            model.addAttribute("error", ex.message)
         }
+        return "redirect:/"
     }
 }
