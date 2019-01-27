@@ -34,9 +34,9 @@
             <!--TODO:<span th:if="${image.isNew}">-->
                 <!--<img th:src="@{img/new.png}" style="width:30px; height:30px">-->
             <!--</span>-->
-            <input class="copyTarget" type="hidden" th:value="${image.getImageLgtmUrl()}" />
+            <input class="copyTarget" type="hidden" th:value="${image.imageLgtmUrl}" />
             <button class="btn btn-outline-secondary" th:data-index="${index.index}" onclick="copyToClipboard(event)">コピー</button>
-            <a th:href="@{/delete(q=${image.getImageUrl()})}">
+            <a th:href="@{/delete(q=${image.imageUrl})}">
             <button class="btn btn-outline-secondary" onclick="return deleteImage();">削除</button></a>
         </div>
     </div>

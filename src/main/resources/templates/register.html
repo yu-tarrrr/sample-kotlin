@@ -19,7 +19,7 @@
         <div class="text-left">
             <form role="form" action="/register" th:action="@{/register}" th:object="${registerForm}" method="post" autocomplete="off">
                 <div>Image Url</div>
-                <input type="text" id="inputPng" style="width:50%;" placeholder="https://mym.corp.yahoo.co.jp/paster/abcdefghijk123.png" th:field="*{imagePng}"/>
+                <input type="text" id="inputPng" style="width:50%;" placeholder="https://abcdefghijk123.png" th:field="*{imageUrl}"/>
                 <br/>
                 <br/>
                 <button class="btn btn-outline-secondary" name="register" type="submit">submit</button>
