@@ -3,6 +3,7 @@ package com.example.sample_kotlin.controller
 import com.example.sample_kotlin.controller.resources.LgtmEntity
 import com.example.sample_kotlin.controller.resources.RegisterForm
 import com.example.sample_kotlin.infrastructure.LgtmRepository
+import com.example.sample_kotlin.service.LgtmRepositoryAccessor
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.GetMapping
@@ -23,6 +24,9 @@ class LgtmRegisterController (var lgtmRepository: LgtmRepository){
         return "register"
     }
 
+    /**
+     * 登録処理
+     */
     @PostMapping(name = "/register")
     fun post(registerForm: RegisterForm,model: Model) : String{
 
@@ -37,7 +41,7 @@ class LgtmRegisterController (var lgtmRepository: LgtmRepository){
 
         // 登録処理
         try {
-            lgtmRepository.save(lgtmEntity)
+            LgtmRepositoryAccessor(lgtmRepository).postImage(lgtmEntity)
         } catch (ex : Exception) {
             model.addAttribute("error", ex.message)
         }
