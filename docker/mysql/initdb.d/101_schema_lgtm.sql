@@ -1,8 +1,7 @@
-CREATE TABLE `sample` (
-  `id` int(3) NOT NULL,
-  `family_name` varchar(20) NOT NULL,
-  `last_name` varchar(20) DEFAULT NULL,
-  `age` int(3) DEFAULT NULL,
-  `sex` varchar(10) NOT NULL,
-  PRIMARY KEY (`id`)
+CREATE TABLE lgtm(
+    image_url VARCHAR(256) NOT NULL,
+    image_name VARCHAR(10),
+    image_lgtm_url VARCHAR(256),
+    update_datetime DATE NOT NULL,
+    PRIMARY KEY(image_url)
 );
