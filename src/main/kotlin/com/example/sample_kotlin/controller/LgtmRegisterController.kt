@@ -23,6 +23,9 @@ class LgtmRegisterController (var lgtmRepository: LgtmRepository){
         return "register"
     }
 
+    /**
+     * 登録処理
+     */
     @PostMapping(name = "/register")
     fun post(registerForm: RegisterForm,model: Model) : String{
 
