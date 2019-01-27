@@ -3,7 +3,7 @@ package com.example.sample_kotlin.controller
 import com.example.sample_kotlin.controller.resources.LgtmEntity
 import com.example.sample_kotlin.controller.resources.LgtmTopResponse
 import com.example.sample_kotlin.infrastructure.LgtmRepository
-import com.example.sample_kotlin.service.DeleteImageService
+import com.example.sample_kotlin.service.LgtmRepositoryAccesor
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.*
 import java.util.*
@@ -23,7 +23,7 @@ class LgtmController(private val lgtmRepository: LgtmRepository) {
         val baseDate = now.time
 
         // 一旦Repositoryから全部取得しておく
-        val responseList = DeleteImageService(lgtmRepository).getImages()
+        val responseList = LgtmRepositoryAccesor(lgtmRepository).getImages()
 
         // 上の処理に対してストリームしていく
         var builtList : MutableList<LgtmTopResponse> = mutableListOf()
@@ -48,7 +48,7 @@ class LgtmController(private val lgtmRepository: LgtmRepository) {
         // レスポンスを返却する
         return topResponseList
     }
-git
+
     /**
      * 削除用メソッド
      */
@@ -60,7 +60,7 @@ git
 
         // 実行する
         try {
-            DeleteImageService(lgtmRepository).deleteImage(lgtmEntity)
+            LgtmRepositoryAccesor(lgtmRepository).deleteImage(lgtmEntity)
         } catch (ex : Exception) {
             print(ex.cause)
         }

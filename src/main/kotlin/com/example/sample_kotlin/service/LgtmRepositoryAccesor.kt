@@ -3,7 +3,7 @@ package com.example.sample_kotlin.service
 import com.example.sample_kotlin.controller.resources.LgtmEntity
 import com.example.sample_kotlin.infrastructure.LgtmRepository
 
-class DeleteImageService(private val lgtmRepository: LgtmRepository ) {
+class LgtmRepositoryAccesor(private val lgtmRepository: LgtmRepository ) {
 
     /**
      * 取得用のメソッド
