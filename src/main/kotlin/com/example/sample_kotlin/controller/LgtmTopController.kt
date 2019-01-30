@@ -13,7 +13,7 @@ import java.util.*
 
 @Controller
 @RequestMapping("/")
-class LgtmTopController(private val lgtmRepository: LgtmRepository) {
+class LgtmTopController(private val accessor: LgtmRepositoryAccessor) {
 
     /**
      * 取得用メソッド
@@ -26,7 +26,7 @@ class LgtmTopController(private val lgtmRepository: LgtmRepository) {
         val baseDate = now.time
 
         // 一旦Repositoryから全部取得しておく
-        val responseList = LgtmRepositoryAccessor(lgtmRepository).getImages()
+        val responseList = accessor.getImages()
 
         // 上の処理に対してストリームしていく
         var builtList : MutableList<LgtmTopResponse> = mutableListOf()
@@ -64,7 +64,7 @@ class LgtmTopController(private val lgtmRepository: LgtmRepository) {
 
         // 実行する
         try {
-            LgtmRepositoryAccessor(lgtmRepository).deleteImage(lgtmEntity)
+            accessor.deleteImage(lgtmEntity)
         } catch (ex : Exception) {
             model.addAttribute("error", ex.message)
         }
