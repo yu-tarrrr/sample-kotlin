@@ -13,7 +13,7 @@ import java.util.*
 
 @Controller
 @RequestMapping("/register")
-class LgtmRegisterController (var lgtmRepository: LgtmRepository){
+class LgtmRegisterController (var accessor: LgtmRepositoryAccessor){
 
     /**
      * 登録フォーム取得用
@@ -41,7 +41,7 @@ class LgtmRegisterController (var lgtmRepository: LgtmRepository){
 
         // 登録処理
         try {
-            LgtmRepositoryAccessor(lgtmRepository).postImage(lgtmEntity)
+            accessor.postImage(lgtmEntity)
         } catch (ex : Exception) {
             model.addAttribute("error", ex.message)
         }

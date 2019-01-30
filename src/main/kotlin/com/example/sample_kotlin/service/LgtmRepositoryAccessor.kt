@@ -2,7 +2,9 @@ package com.example.sample_kotlin.service
 
 import com.example.sample_kotlin.controller.resources.LgtmEntity
 import com.example.sample_kotlin.infrastructure.LgtmRepository
+import org.springframework.stereotype.Service
 
+@Service
 class LgtmRepositoryAccessor(private val lgtmRepository: LgtmRepository ) {
 
     /**
