@@ -19,7 +19,6 @@ class LgtmTopResponse {
             imageLgtmUrl = lgtmEntity.imageLgtmUrl
             updateDatetime = lgtmEntity.updateDatetime
             isNew = lgtmEntity.updateDatetime.after(baseDate)
-//
         }
     }
 }
